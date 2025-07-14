@@ -11,7 +11,7 @@ class PlayState extends FlxState
 
 	public var tiles:FlxTypedGroup<Tile> = new FlxTypedGroup<Tile>();
 
-	override public function new(levelNum:Int = 0)
+	override public function new(levelNum:Int = 1)
 	{
 		super();
 
