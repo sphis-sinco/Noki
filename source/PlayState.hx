@@ -35,5 +35,37 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		final left = FlxG.keys.anyJustReleased([LEFT, A]);
+		final down = FlxG.keys.anyJustReleased([DOWN, S]);
+		final up = FlxG.keys.anyJustReleased([UP, W]);
+		final right = FlxG.keys.anyJustReleased([RIGHT, D]);
+
+		if (left || down || up || right)
+		{
+			if (left)
+				player.x -= player.width;
+			else if (right)
+				player.x += player.width;
+			else if (up)
+				player.y -= player.height;
+			else if (down)
+				player.y += player.height;
+
+			for (tile in tiles)
+			{
+				if (player.overlaps(tile))
+				{
+					if (left)
+						player.x += player.width;
+					else if (right)
+						player.x -= player.width;
+					else if (up)
+						player.y += player.height;
+					else if (down)
+						player.y -= player.height;
+				}
+			}
+		}
 	}
 }
