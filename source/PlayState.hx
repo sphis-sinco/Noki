@@ -66,6 +66,16 @@ class PlayState extends FlxState
 						player.y -= player.height;
 				}
 			}
+
+			if (player.x < 0)
+				player.x = 0;
+			else if (player.x > FlxG.width - player.width)
+				player.x -= player.width;
+
+			if (player.y < 0)
+				player.y = 0;
+			else if (player.y > FlxG.height - player.height)
+				player.y -= player.height;
 		}
 	}
 }
