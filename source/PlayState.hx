@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
@@ -13,6 +14,7 @@ class PlayState extends FlxState
 
 	override public function new(levelNum:Int = 1)
 	{
+		FlxG.resizeGame(FlxG.width * 4, FlxG.height * 4);
 		super();
 
 		level_number = levelNum;
