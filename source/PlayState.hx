@@ -1,5 +1,6 @@
 package;
 
+import Tile.TileType;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -14,7 +15,6 @@ class PlayState extends FlxState
 
 	override public function new(levelNum:Int = 1)
 	{
-		FlxG.resizeGame(FlxG.width * 4, FlxG.height * 4);
 		super();
 
 		level_number = levelNum;
@@ -30,6 +30,41 @@ class PlayState extends FlxState
 		final playerPosition = LevelGenerator.getPlayerGridPosition(level_number);
 		player.setPosition(8 * playerPosition[0], 8 * playerPosition[1]);
 		add(player);
+
+		var x = 0;
+		var y = 0;
+		for (tile in level)
+		{
+			var tile_type:TileType = TILE;
+
+			switch (tile)
+			{
+				case 2:
+					tile_type = FALLING_TILE;
+				case 3:
+					tile_type = PLAYER;
+				case 4:
+					tile_type = KEY;
+				case 5:
+					tile_type = DOOR;
+			}
+
+			var newTile:Tile = new Tile(tile_type, new FlxPoint(8 * x, 8 * y));
+			if (tile != 0)
+				tiles.add(newTile);
+
+			x++;
+			if (x == 8)
+			{
+				x = 0;
+				y++;
+
+				if (y == 8)
+					break;
+			}
+		}
+
+		add(tiles);
 	}
 
 	override public function update(elapsed:Float)

@@ -5,12 +5,16 @@ import flixel.math.FlxPoint;
 
 class Tile extends FlxSprite
 {
+	public var tile:TileType;
+
 	override public function new(tileType:TileType, position:FlxPoint)
 	{
 		super(position.x, position.y);
 
 		loadGraphic('assets/tiles.png', true, 8, 8);
 		animation.add('tileset', [0, 1, 2, 3, 4], 0, false);
+
+		tile = tileType;
 
 		switch (tileType)
 		{
